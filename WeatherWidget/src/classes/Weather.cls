@@ -2,57 +2,57 @@ public with sharing abstract class Weather {
 
     public class WeatherParams
     {
-        private Coord coodr;
-        private List<WeatherParam> weather;
-        private String base;
-        private Main main;
-        private Integer visibility;
-        private Wind wind;
-        private Clouds clouds;
-        private Integer dt;
-        private Sys sys;
-        private Integer timezone;
-        private Integer id;
-        private String name;
-        private Integer cod;
+        public Coord coodr;
+        public List<WeatherParam> weather;
+        public String base;
+        public Main main;
+        public Integer visibility;
+        public Wind wind;
+        public Clouds clouds;
+        public Integer dt;
+        public Sys sys;
+        public Integer timezone;
+        public Integer id;
+        public String name;
+        public Integer cod;
     }
 
-    private class Coord{
-        private Double lon;
-        private Double lat;
+    public class Coord{
+        public Double lon;
+        public Double lat;
     }
 
-    private class WeatherParam{
-        private Integer id;
-        private String main;
-        private String description;
-        private String icon;
+    public class WeatherParam{
+        public Integer id;
+        public String main;
+        public String description;
+        public String icon;
     }
 
-    private class Main{
-        private Double temp;
-        private Double feels_like;
-        private Double temp_min;
-        private Double temp_max;
-        private Double pressure;
-        private Double humidity;
+    public class Main{
+        public Double temp;
+        public Double feels_like;
+        public Double temp_min;
+        public Double temp_max;
+        public Double pressure;
+        public Double humidity;
     }
 
-    private class Wind{
-        private Double speed;
-        private Double deg;
-        private Double gust;
+    public class Wind{
+        public Double speed;
+        public Double deg;
+        public Double gust;
     }
 
-    private class Clouds{
-        private Integer all;
+    public class Clouds{
+        public Integer all;
     }
 
-    private class Sys{
-        private Integer type;
-        private Integer id;
-        private String country;
-        private Integer sunrise;
-        private Integer sunset;
+    public class Sys{
+        public Integer type;
+        public Integer id;
+        public String country;
+        public Integer sunrise;
+        public Integer sunset;
     }
 }
