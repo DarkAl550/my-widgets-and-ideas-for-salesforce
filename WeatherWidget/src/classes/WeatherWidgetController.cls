@@ -36,7 +36,6 @@ public with sharing class WeatherWidgetController extends Weather {
         responseWeather.wind = Math.round((weatherParams.wind.speed / 3.6) * 100) / 100.0;//Convert to m/s
         responseWeather.pressure = weatherParams.main.pressure;
         responseWeather.humidity = weatherParams.main.humidity;
-        System.debug(responseWeather);
         return responseWeather;
     }
 }
