@@ -1,0 +1,5 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+    
+    <canvas height='500' width='500' aura:id='clock'></canvas>
+    <aura:handler name="init" value="{!this}" action="{!c.onload}"/>
+</aura:component>
