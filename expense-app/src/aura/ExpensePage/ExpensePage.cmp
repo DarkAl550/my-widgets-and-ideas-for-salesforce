@@ -1,0 +1,111 @@
+<aura:component controller="ExpensePageController">
+    <aura:attribute name="user" type="Contact"/>
+    <aura:attribute name="expenseMonthly" type="Object"/>
+    <aura:attribute name="expenseCardsDate" type="List"/>
+    <aura:attribute name="accordDate" type="String"/>
+    <aura:attribute name="expenseCards" type="List"/>
+    <aura:attribute name="mycolumns" type="List"/>
+    <aura:attribute name="isLoading" type="Boolean"/>
+    <aura:attribute name="isOpen" type="Boolean" default="false"/>
+    <aura:attribute name="defMonth" type="String" default="01"/>
+    <aura:attribute name="defYear" type="String" default="2020"/>
+    <aura:attribute name="lstYears" type="List" />
+    <aura:attribute name="lstMonths" type="List"/>
+    <aura:attribute name="totalAmount" type="Double" default="0"/>
+    <aura:attribute name="notRec" type="Boolean" default="true"/>
+    <aura:attribute name="openIncome" type="Boolean" default="false"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="closeEvent" event="c:NewCardWizardEvent" action="{!c.handleNewCardWizardEvent}"/>
+    
+    <div class="back-site">
+        <aura:if isTrue="{!v.isOpen}">
+            <c:NewCardWizard user="{!v.user}"/>
+        </aura:if>
+        <aura:if isTrue="{!v.openIncome}">
+            <c:IncomeWindow expenseMonthly="{!v.expenseMonthly}"/>
+        </aura:if>
+        <lightning:card class="back-site">
+            <lightning:spinner aura:id="loadingSpinner" alternativeText="Loading" size="large" variant="brand" class="slds-hide"/>
+            <!--TITLE-->
+            <aura:set attribute="title">
+                <div class="title-back">
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col head-font">
+                            <span class="title1">{!v.user.Name}</span>
+                            <span style="color: black;"> | </span>
+                            <span class="title2">{!v.user.Office__c}</span>
+                        </div>
+                        <div class="slds-col slds-align_absolute-center">
+                            <h1 class="head-font title1">Balance:</h1>
+                            <span class="balance">${!v.expenseMonthly.Reminder__c}</span>
+                            <!--<lightning:formattedNumber value="{!v.expenseMonthly.Reminder__c}" style="currency" currencyCode="USD"/>-->  
+                        </div>
+                        <div class="slds-col slds-align_absolute-center">
+                            <lightning:button variant="brand-outline" iconName="utility:arrowdown" iconPosition="left" label="Income" title="Income" onclick="{!c.openIncomeWindow}" />
+                            <lightning:button variant="brand" label="New Expense" title="New Expense" onclick="{!c.createExpense}" />
+                        </div>
+                    </div>
+                </div>
+            </aura:set>
+            <!--CONTENT-->
+            <div class="slds-grid slds-gutters content-back">
+            	<div class="slds-col slds-size_1-of-4">
+                    <div onclick="{!c.getNumMounth}">
+                        
+                        <aura:iteration items="{!v.lstMonths}" var="month" indexVar="index">
+                            <h1 id="{!index + 1}" aura:id="{!month}" class="no-select month-font">{!month}</h1>      
+                        </aura:iteration>
+                        
+                    </div>
+                   
+                    <div class="slds-grid slds-gutters slds-box slds-scrollable--x" onclick="{!c.getYearOnClick}">
+                        
+                        <aura:iteration items="{!v.lstYears}" var="year">
+                            <div class="slds-col">
+                                <h1 id="{!year}" aira:id="{!year}" class="no-select year-font">{!year}</h1>
+                            </div>
+                            
+                        </aura:iteration>
+                        
+                    </div>
+                    
+                </div>
+                <!--Accordions-->
+                <div class="slds-col slds-size_3-of-4">
+                    <aura:if isTrue="{!v.notRec}">
+                        <lightning:accordion aura:id="accordion" onsectiontoggle="{! c.selectAccord }">
+                            <aura:iteration items="{!v.expenseCardsDate}" var="dat" indexVar="index">
+                                <lightning:accordionSection name="{!dat}" label="{!dat}" aura:id="{!index}">
+                                    <lightning:datatable  data="{! v.expenseCards }" class="slds-size_3-of-4"
+                                        columns="{! v.mycolumns }"
+                                        keyField="id"
+                                        hideCheckboxColumn="true"
+                                        columnWidthsMode="auto"
+                                        isLoading="{!v.isLoading}"
+                                        onrowaction="{!c.delRecord}"
+                                    />
+
+                                    <div class="slds-align_absolute-center">
+                                        <p>Total:</p>
+                                        <span>${!v.totalAmount}</span>
+                                        <!--<lightning:formattedNumber value="{!v.totalAmount}" style="currency" currencyCode="USD"/>-->
+                                    </div>
+                                    
+                                </lightning:accordionSection>
+                            </aura:iteration>
+                        </lightning:accordion>
+                        <aura:set attribute="else">
+                            <div class="slds-align_absolute-center">
+                                <h1 class="err-font">Expenses not found!</h1>
+                            </div>
+                        </aura:set>
+                    </aura:if>
+
+                </div>
+            </div>
+            
+        </lightning:card>
+    </div>
+    
+</aura:component>

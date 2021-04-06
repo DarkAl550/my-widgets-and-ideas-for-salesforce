@@ -1,0 +1,17 @@
+<aura:component >
+    <aura:attribute name="objectName" type="Object"/>
+    <aura:attribute name="fieldsName" type="String[]"/>
+	<lightning:card class="slds-p-around_small">
+            <lightning:spinner aura:id="loadingSpinner" alternativeText="Loading" size="large" variant="brand" class="slds-hide"/>
+            <aura:set attribute="title">
+                <h1 class="slds-align_absolute-center slds-border_bottom slds-m-bottom_small slds-p-bottom_small">New Skill Requirement</h1>
+            </aura:set>
+            <lightning:recordEditForm aura:id="recordEditForm" objectApiName="SkillRequirement" onsuccess="{!c.onSuccessCreate}" onload="{!c.onLoadedForm}" onsubmit="{!c.onSubmitingForm}">
+                <lightning:messages />
+                <lightning:inputField fieldName="RelatedRecordId" value="{!v.startedWorkForNextStep}"/>
+                <lightning:inputField fieldName="SkillId" />
+                <lightning:inputField fieldName="SkillLevel" />
+                <lightning:button class="slds-m-top_small slds-align_absolute-center" variant="brand" type="submit" label="Next" title="Next Step" />
+            </lightning:recordEditForm>
+        </lightning:card>
+</aura:component>

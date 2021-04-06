@@ -1,0 +1,71 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="ExchangeCurrencyRateController">
+	<aura:attribute type="Exchange_Rate__c[]" name="rateList"/>
+    <aura:attribute name="mycolumns" type="List"/>
+    <aura:attribute name="sortedBy" type="String" default="Name"/>
+	<aura:attribute name="sortedDirection" type="String" default="asc"/>
+    <aura:attribute name="listBaseRates" type="List"/> 
+    <aura:attribute name="isOpen" type="Boolean" default="false"/>
+    <aura:attribute name="recordId" type="Id"/>
+
+    
+    <aura:attribute name="date1" type="String" default="2020-01-01"/>
+    <aura:attribute name="date2" type="String" default="2021-07-01"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.fetchRate}"/>
+    
+    <aura:if isTrue="{!v.isOpen}">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModel }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Edit Base Currency</h2>
+                    </header>
+                    
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning:recordEditForm recordId="{!v.recordId}" objectApiName="Exchange_Rate__c" onsuccess="{! c.closeModel }">
+                            <lightning:messages /> 
+                                    <div class="">
+                                        <lightning:inputField fieldName="Base_Currency__c"/>
+                                    </div>
+                            <div class="slds-align_absolute-center">
+                                <lightning:button class="slds-m-top_small" label="Cancel" onclick="{! c.closeModel }" />
+                            	<lightning:button class="slds-m-top_small" variant="brand" type="submit" label="Save" />
+                            </div>
+
+                        </lightning:recordEditForm>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+    <lightning:card title="Exchange Rate Currency">
+        <lightning:select name="select" aura:id="selectRate" label="Select Rate">
+            <option value=""></option>
+            <aura:iteration items="{!v.listBaseRates}" var="rate">
+                <option value="{!rate +__c}">{!rate}</option>
+            </aura:iteration> 
+    	</lightning:select>
+        <div class="slds-grid slds-gutters">
+            <lightning:input class="slds-col" type="date" name="date1" aura:id="dat1" label="From:" value="{!v.date1}" />
+            <lightning:input class="slds-col" type="date" name="date2" aura:id="dat1" label="To:" value="{!v.date2}"/>
+        </div>  
+        <lightning:button class="slds-align_absolute-center slds-m-top_small" variant="brand" label="Search" title="search" onclick="{! c.fetchRate }" />
+		<div style="height: 300px">
+            <lightning:spinner aura:id="loadingSpinner" alternativeText="Loading" size="large" variant="brand" class="slds-hide"/>
+            
+            <lightning:datatable data="{!v.rateList }"
+                                 columns="{!v.mycolumns }"
+                                 keyField="id"
+                                 hideCheckboxColumn="true"
+                                 onsort="{!c.updateColumnSorting}"
+                                 sortedBy="{!v.sortedBy}"
+                                 sortedDirection="{!v.sortedDirection}"
+                                 onrowaction="{!c.editRecord}"/>
+        </div>
+    </lightning:card>
+</aura:component>

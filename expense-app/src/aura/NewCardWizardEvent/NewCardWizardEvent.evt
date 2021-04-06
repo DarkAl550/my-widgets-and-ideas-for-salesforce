@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT" description="NewCardWizardEvent">
+    <aura:attribute name="isOpen" type="Boolean"/> 
+</aura:event>

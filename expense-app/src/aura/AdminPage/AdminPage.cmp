@@ -1,0 +1,102 @@
+<aura:component controller="AdminPageController">
+    <aura:attribute name="user" type="Contact"/>
+    <aura:attribute name="years" type="List"/>
+    <aura:attribute name="year" type="Integer" default="2020"/>
+    <aura:attribute name="months" type="List"/>
+    <aura:attribute name="officeStatistics" type="List"/>
+    <aura:attribute name="sumMonthly" type="List"/>
+    <aura:attribute name="totalSum" type="Double" default="0"/>
+    <aura:attribute name="showExpensePage" type="Boolean" default="false"/>
+    <aura:attribute name="showMessage" type="Boolean" default="false"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:if isTrue="{!v.showMessage}">
+        <div style="background-color: #0070D2;">
+            <p class="slds-align_absolute-center errMessage">It isn't you're office!</p>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.showExpensePage}">
+       <c:ExpensePage user="{!v.user}"/>
+       <aura:set attribute="else">
+            <div style="background-color: #0070D2;">
+                <lightning:card class="slds-m-right_medium slds-m-left_medium">
+                    <aura:set attribute="title">
+                        <h1 class="head-font">Admin Page</h1>
+                    </aura:set>
+        
+                    <div >
+                        <lightning:spinner aura:id="loadingSpinner" alternativeText="Loading" size="large" variant="brand" class="slds-hide"/>
+                        <div class="slds-grid slds-gutters slds-p-left_medium slds-p-right_medium">
+                            <div class="slds-col slds-size_1-of-3 main-table">
+                                <div class="main-table">
+                                    <div class="table-borders">
+                                        <lightning:select aura:id="selectYear" label="Regional Expenses" name="selectYear" required="true" onchange="{!c.doInit}" value="{!v.year}">
+                                            <aura:iteration items="{!v.years}" var="year">
+                                                <option value="{!year}">{!year}</option>
+                                            </aura:iteration>
+                                        </lightning:select>
+                                    </div>
+                                    
+                                    <div class="slds-grid table-borders">
+                                        <div class="slds-col slds-size_1-of-2 slds-p-left_small standart-text slds-m-top_medium">
+                                            <p>Month</p>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2 slds-p-left_small table-borders standart-text" style="color:black; font-weight: 600;">
+                                            <div class="">
+                                                <p>Balance Now</p>
+                                            </div>
+                                            <div class="">
+                                                <p>Monthly average</p>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <aura:iteration items="{!v.months}" var="month">
+                                    <div class="table-borders slds-p-left_small standart-text">{!month}</div>
+                                </aura:iteration>
+                                <div class="slds-p-left_small table-borders standart-text back-color" style="color:black; font-weight: 600;">Total:</div>
+                            </div>
+                            
+                            
+                                <aura:iteration items="{!v.officeStatistics}" var="officeStat">
+                                    <div class="slds-col main-table">
+                                        <div class="office-name main-table">
+                                            <p id="{!officeStat.office}" onclick="{!c.checkOffice}"><lightning:formattedText linkify="true" value="{!officeStat.office}"/></p>
+                                        </div>
+                                        <div class="slds-align_absolute-center standart-text main-table" style="color:black; font-weight: 600; border-bottom: white;">{!officeStat.balance}</div>
+                                        <div class="slds-align_absolute-center standart-text main-table" style="color:black; font-weight: 600; border-top: white;">{!officeStat.reminder}</div>
+                                        <aura:iteration items="{!officeStat.monthExpense}" var="monEx" indexVar="index">
+                                            <div aura:id="{!index}" class="slds-align_absolute-center standart-text table-borders">{!monEx}</div>
+                                        </aura:iteration>
+                                        <div class="slds-align_absolute-center standart-text table-borders back-color" style="color:black; font-weight: 600;">{!officeStat.total}</div>
+                                    </div>
+                                    
+                                </aura:iteration>
+                                                               
+                            
+                            <div class="slds-col slds-size_1-of-6 main-table">
+                                <div class="main-table standart-text slds-align_absolute-center sum-pad" style="color:black; font-weight: 600;">
+                                    Summ
+                                </div>
+                                <aura:iteration items="{!v.sumMonthly}" var="sum">
+                                    <div class="table-borders slds-align_absolute-center standart-text">
+                                        <p>{!sum}</p>
+                                    </div>
+                                </aura:iteration>
+                                <div class="slds-align_absolute-center standart-text table-borders back-color" style="color:black; font-weight: 600;">
+                                    {!v.totalSum}
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                        
+                </lightning:card>
+            </div>
+       </aura:set>
+    </aura:if>
+     
+</aura:component>

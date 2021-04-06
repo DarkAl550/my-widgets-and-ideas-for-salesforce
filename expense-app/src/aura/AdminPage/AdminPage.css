@@ -1,0 +1,78 @@
+.THIS .td1{
+    border: 1px solid black;
+    width:33%;
+}
+.THIS .td{
+    border: 1px solid black;
+    width:100%;
+}
+.THIS .tr{
+    border: 1px solid black;
+    width:100%;
+}
+
+.THIS .errMessage{
+    background-color: red;
+    color: white;
+    font-weight: 600;
+    font-size: 1.3em;
+    cursor: default;
+    width:100%;
+    height: 50px;
+    text-align: center;
+    border:1px solid red;
+    border-radius: 2%;
+    margin: 0.5em;
+
+}
+
+.THIS .head-font{
+    font-family: "Georgia", Georgia, serif;
+    font-weight: 600;
+    font-size: 1.6em;
+    cursor: default;
+    color: #0070D2;
+}
+
+.THIS .table-borders{
+    border: 2px solid gray;
+    
+
+}
+
+.THIS .office-name{
+    color: #0070D2;
+    font-family: "Arial", Arial, sans-serif;
+    font-weight: 600;
+    font-size: 1.6em;
+    text-align: center;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    cursor: pointer;
+}
+
+.THIS .standart-text{
+    font-family: "Arial", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1.2em;
+    cursor: default;
+    color: black;
+}
+
+.THIS .office-name:hover{
+    background-color: whitesmoke;
+    color: #B32C7D;
+}
+
+.THIS .back-color{
+    background-color: whitesmoke;
+}
+
+.THIS .main-table{
+    border: 3px solid black;
+}
+
+.THIS .sum-pad{
+    padding-top: 4.0em;
+    padding-bottom: 1.5em;
+}

@@ -1,0 +1,15 @@
+.THIS.fon {
+    background-color: #00A3E0;
+    width: 100vw;
+    height: 100vh;
+    
+}
+.THIS.aligned{
+    background-color: #00A3E0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

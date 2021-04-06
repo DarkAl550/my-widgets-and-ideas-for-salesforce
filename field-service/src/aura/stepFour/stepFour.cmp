@@ -1,0 +1,39 @@
+<aura:component controller="StepFourController" implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="showStepOne" type="Boolean" default="false"/>
+    <aura:attribute name="selectProduct" type="List"/>
+    <aura:attribute name="selectLocation" type="List"/>
+    <aura:attribute name="quantityUnitOfMeasure" type="List"/>
+    <aura:attribute name="quantity" type="Double"/>
+    <aura:attribute name="serialNumber" type="String"/>
+    <aura:attribute name="startedProduct" type="Object"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:if isTrue="{!v.showStepOne}">
+       <c:stepOne/>
+       <aura:set attribute="else">
+        
+        <lightning:card class="slds-p-around_small">
+            <lightning:spinner aura:id="loadingSpinner" alternativeText="Loading" size="large" variant="brand" class="slds-hide"/>
+            <aura:set attribute="title">
+                <h1 class="slds-align_absolute-center slds-border_bottom slds-m-bottom_small slds-p-bottom_small">New Product Item</h1>
+            </aura:set>
+            <aura:set attribute="footer">
+                <lightning:button class="slds-m-top_small slds-align_absolute-center" variant="brand" label="Save" title="Save" onclick="{!c.saveProductIt}" />
+            </aura:set>
+            
+            <div class="slds-gutters slds-grid">
+                <div class="slds-col">
+                    <lightning:combobox name="productName" aura:id="productName" value="{!v.startedProduct}" label="Product Name" placeholder="{!v.startedProduct.Name}" options="{! v.selectProduct }" onchange="{! c.handleChange }" required="true"/>
+                    <lightning:input type="number" name="inputQuantity" label="Quantity On Hand" value="{!v.quantity}" required="true"/>
+                    <lightning:input name="inputSerialNumber" label="Serial Number" value="{!v.serialNumber}" />
+                </div>
+                <div class="slds-col">
+                    <lightning:combobox name="location" aura:id="location" value="" label="Location" placeholder="" options="{! v.selectLocation }" onchange="{! c.handleChange }" required="true"/>
+                    <lightning:combobox name="unitOfMeasure" aura:id="unitOfMeasure" label="Quantity Unit Of Measure" value="--None--" placeholder="--None--" options="{! v.quantityUnitOfMeasure }" onchange="{! c.handleChange }"/>
+                </div>
+            </div>
+        </lightning:card>
+       </aura:set>
+    </aura:if>
+</aura:component>

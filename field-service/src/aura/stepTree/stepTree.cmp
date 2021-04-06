@@ -1,0 +1,33 @@
+<aura:component controller="StepTreeController" implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="workType" type="WorkType"/>
+    <aura:attribute name="quantityUnitOfMeasure" type="List"/>
+    <aura:attribute name="selectWorkType" type="List"/>
+    <aura:attribute name="selectProduct" type="List"/>
+    <aura:attribute name="quantity" type="Double" default="0"/>
+    <aura:attribute name="startedWorkType" type="Object"/>
+    <aura:attribute name="productToNextStep" type="Object"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+
+        <lightning:card class="slds-p-around_small">
+            <lightning:spinner aura:id="loadingSpinner" alternativeText="Loading" size="large" variant="brand" class="slds-hide"/>
+            <aura:set attribute="title">
+                <h1 class="slds-align_absolute-center slds-border_bottom slds-m-bottom_small slds-p-bottom_small">New Product Required</h1>
+            </aura:set>
+            <aura:set attribute="footer">
+                <lightning:button class="slds-m-top_small slds-align_absolute-center" variant="brand" label="Next" title="Next Step" onclick="{!c.nextStep}" />
+            </aura:set>
+            <div>
+                <!--Work Type-->
+                <lightning:combobox name="perentRecord" aura:id="perentRecord" value="{!v.startedWorkType}" label="Perent Record" placeholder="{!v.startedWorkType.Name}" options="{! v.selectWorkType }" onchange="{! c.handleChange }" required="true"/>
+                <!--Product-->
+                <lightning:combobox name="productRequired" aura:id="productRequired" label="Product Required" value="{!v.productToNextStep}" placeholder="Choose One..." options="{! v.selectProduct }" onchange="{! c.handleChange }" required="true"/>
+                
+                <lightning:input type="number" name="input1" label="Quantity Required" value="{!v.quantity}" />
+                <lightning:combobox name="unitOfMeasure" aura:id="unitOfMeasure" label="Quantity Unit Of Measure" value="--None--" placeholder="--None--" options="{! v.quantityUnitOfMeasure }" onchange="{! c.handleChange }"/>
+            </div>
+            
+        </lightning:card>
+
+</aura:component>

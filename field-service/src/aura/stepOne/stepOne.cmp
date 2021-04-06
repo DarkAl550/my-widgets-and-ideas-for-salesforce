@@ -1,0 +1,22 @@
+<!--New Work Type-->
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+        <lightning:card class="slds-p-around_small">
+            <lightning:spinner aura:id="loadingSpinner" alternativeText="Loading" size="large" variant="brand" class="slds-hide"/>
+            <aura:set attribute="title">
+                <h1 class="slds-align_absolute-center slds-border_bottom slds-m-bottom_small slds-p-bottom_small">New Work Type</h1>
+            </aura:set>
+            <lightning:recordEditForm aura:id="recordEditForm" objectApiName="WorkType" onsuccess="{!c.showSuccessToast}" onload="{!c.onLoadedForm}" onsubmit="{!c.onSubmitingForm}">
+                <lightning:messages />
+                <lightning:inputField fieldName="Name" />
+                <lightning:inputField fieldName="Description" />
+                <lightning:inputField fieldName="EstimatedDuration" />
+                <lightning:inputField fieldName="DurationType" />
+                <lightning:inputField fieldName="ShouldAutoCreateSvcAppt" />
+                <lightning:button class="slds-m-top_small slds-align_absolute-center" variant="brand" type="submit" label="Next" title="Next Step" />
+            </lightning:recordEditForm>
+        </lightning:card>
+
+</aura:component>

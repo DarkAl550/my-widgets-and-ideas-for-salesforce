@@ -1,0 +1,24 @@
+<aura:component controller="LoginController">
+
+    <aura:attribute name="user" type="Contact"/>
+    <aura:attribute name="successLog" type="Boolean" default="false"/>
+    <aura:attribute name="isAdmin" type="Boolean"/>
+
+    <aura:handler name="logEvent" event="c:LoginEvent" action="{!c.handleLoginEvent}"/>
+
+    <div class="fon"> 
+        <aura:if isTrue="{!v.successLog}">
+            <aura:if isTrue="{!v.isAdmin}">
+                <!--Admin-->
+                <c:AdminPage user="{!v.user}"/>
+                <aura:set attribute="else">
+                    <!--Expense-->
+                    <c:ExpensePage user="{!v.user}"/>
+                </aura:set>
+            </aura:if>
+            <aura:set attribute="else">
+                <c:Login/>
+            </aura:set>
+        </aura:if>
+    </div>
+</aura:component>

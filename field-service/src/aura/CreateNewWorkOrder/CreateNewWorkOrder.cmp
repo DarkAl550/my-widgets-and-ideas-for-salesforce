@@ -1,0 +1,28 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <!-- Create Work Order Form -->
+	<lightning:card class="slds-p-around_small">
+            <lightning:spinner aura:id="loadingSpinner" alternativeText="Loading" size="large" variant="brand" class="slds-hide"/>
+             <aura:set attribute="title">
+                 <h1 class="slds-align_absolute-center slds-border_bottom slds-m-bottom_small slds-p-bottom_small">New Work Order</h1>
+             </aura:set>
+             <lightning:recordEditForm aura:id="recordEditForm" objectApiName="WorkOrder" onsuccess="{!c.toCreateNewWorkOrderLineItem}" onload="{!c.onLoadedForm}" onsubmit="{!c.onSubmitingForm}">
+                 <lightning:messages />
+                 <div class="slds-grid slds-gutters">
+                     <div class="slds-col">
+                        <lightning:inputField fieldName="Status" />
+                        
+                     </div>
+                     <div class="slds-col">
+                        <lightning:inputField fieldName="Priority" />
+                        <lightning:inputField fieldName="WorkTypeId" />
+                     </div>
+                 </div>
+                 <lightning:inputField fieldName="Subject" />
+                 <lightning:inputField fieldName="Description" />
+                 
+                 <lightning:button class="slds-m-top_small slds-align_absolute-center" variant="brand" type="submit" label="Next" title="Next Step" />
+             </lightning:recordEditForm>
+         </lightning:card>
+</aura:component>

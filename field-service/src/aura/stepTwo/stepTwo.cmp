@@ -1,0 +1,25 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="startedWorkForNextStep" type="Object"/>
+    <aura:attribute name="validSkillLevel" type="Double"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:if isTrue="{!v.showStepTree}">
+       <c:stepTree startedWorkType="{!v.startedWorkForNextStep}"/>
+       <aura:set attribute="else">
+        <lightning:card class="slds-p-around_small">
+            <lightning:spinner aura:id="loadingSpinner" alternativeText="Loading" size="large" variant="brand" class="slds-hide"/>
+            <aura:set attribute="title">
+                <h1 class="slds-align_absolute-center slds-border_bottom slds-m-bottom_small slds-p-bottom_small">New Skill Requirement</h1>
+            </aura:set>
+            <lightning:recordEditForm aura:id="recordEditForm" objectApiName="SkillRequirement" onsuccess="{!c.onSuccessCreate}" onload="{!c.onLoadedForm}" onsubmit="{!c.onSubmitingForm}" >
+                <lightning:messages />
+                <lightning:inputField fieldName="RelatedRecordId" value="{!v.startedWorkForNextStep}"/>
+                <lightning:inputField fieldName="SkillId" />
+                <lightning:inputField fieldName="SkillLevel" value="{!v.validSkillLevel}" />
+                <lightning:button class="slds-m-top_small slds-align_absolute-center" variant="brand" type="submit" label="Next" title="Next Step" />
+            </lightning:recordEditForm>
+        </lightning:card>
+       </aura:set>
+    </aura:if>
+</aura:component>

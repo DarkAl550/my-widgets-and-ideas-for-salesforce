@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Monthly Expense</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Monthly Expenses</value>
+    </caseValues>
+    <fields>
+        <label><!-- Balance --></label>
+        <name>Balance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Keeper --></label>
+        <name>Keeper__c</name>
+        <relationshipLabel><!-- Monthly Expenses --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Month Date --></label>
+        <name>Month_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reminder --></label>
+        <name>Reminder__c</name>
+    </fields>
+    <fields>
+        <label><!-- Spent Amount --></label>
+        <name>SpentAmount__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

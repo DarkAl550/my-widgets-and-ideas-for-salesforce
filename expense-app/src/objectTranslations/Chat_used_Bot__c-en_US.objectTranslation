@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Chat used Bot</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Chats used Bot</value>
+    </caseValues>
+    <fields>
+        <label><!-- Chat ID --></label>
+        <name>Chat_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email Keeper --></label>
+        <name>Email_Keeper__c</name>
+    </fields>
+    <fields>
+        <label><!-- Keeper ID --></label>
+        <name>Keeper_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Keeper Password --></label>
+        <name>Keeper_Password__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
