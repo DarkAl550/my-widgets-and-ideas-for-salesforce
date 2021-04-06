@@ -1,0 +1,171 @@
+body{ 
+    background-color: #fff;
+    background-image: linear-gradient(0deg, #ffffff 0%, #78cee9 100%);
+    width: 100vw;
+    height: 100vh;
+}
+h1{
+    text-align: center;
+}
+.currentlyField{
+    border: 2px solid rgb(2, 173, 2);
+}
+.invalidField{
+    border: 2px solid rgb(216, 9, 9);
+}
+.submitForm{
+    text-align: center;
+    
+}
+label{
+    margin-top: 15.0em;
+    font-family: 'Akaya Telivigala', cursive;
+    font-size: x-large;
+}
+.navButtons{
+    margin-top: 15px;
+}
+.hiddenElement{
+    display: none;
+}
+.input-checkbox{
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    padding: 3px 5px;
+    opacity: 0;
+}
+.input-text{
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    padding: 3px 5px;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+    width: 190px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+[type="date"] {
+    background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+}
+[type="date"]::-webkit-inner-spin-button {
+    display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+  
+input[type=date]{
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 3px 5px;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+    width: 190px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.dateInput {
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 3px 5px;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+    width: 190px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.pretty:hover{
+    position: absolute;
+    left: 0;
+    top: 0;
+    min-width: 1em;
+    width: 100%;
+    height: 20px;
+    z-index: 2;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+img{
+    vertical-align: middle;
+}
+.captcha {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+.container{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    background-color: white;
+    padding: 1.0em;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+input[type=button] {
+    border: 2px solid black;
+    border-radius: 45px;
+    cursor: pointer;
+    background-color: white;
+    width: 30%;    
+    font-family: 'Akaya Telivigala', cursive;
+    font-size: medium;
+}
+input[type=button]:hover {
+    border: 2px solid black;
+    border-radius: 45px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.808);
+    width: 30%;    
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    font-family: 'Akaya Telivigala', cursive;
+}
+input[type=submit] {
+    border: 2px solid black;
+    border-radius: 45px;
+    cursor: pointer;
+    background-color: white;
+    width: 30%;    
+    font-family: 'Akaya Telivigala', cursive;
+    font-size: medium;
+}
+input[type=submit]:hover {
+    border: 2px solid black;
+    border-radius: 45px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.808);
+    width: 30%;    
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    font-family: 'Akaya Telivigala', cursive;
+}
+.result{
+    font-family: 'Roboto', sans-serif;
+    font-size: large;
+
+}
+h3{
+    font-family: 'Akaya Telivigala', cursive;
+}
+.checkPage{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+#companynameerror, #companysiteerror, #firstnameerror, #lastnameerror, #emailerror, #daterror, #countryerror, #stateerror, #ziperror, #cityerror, #streeterror{
+    color:rgb(216, 9, 9);
+}
+.error{
+    display:none;
+}
+.errorM{
+    border-radius: 5px;
+    border-color: rgb(216, 9, 9);
+    background-color: rgb(216, 9, 9);
+    color: white;
+}

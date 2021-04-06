@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Customer Information</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Roboto&display=swap" rel="stylesheet">
+        <script src="js/check.js"></script>
+        <script src="js/validation.js"></script>
+        <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+        <script src="https://www.google.com/recaptcha/api.js"></script>
+        <script>
+            function timestamp() { var response = document.getElementById("g-recaptcha-response"); if (response == null || response.value.trim() == "") {var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);elems["ts"] = JSON.stringify(new Date().getTime());document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems); } } setInterval(timestamp, 500); 
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <div>
+                <h1 id="title">Title</h1>
+            </div>
+            <div class="submitForm">
+                <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" onsubmit="timestamp()">
+    
+                    <input type=hidden name='captcha_settings' value='{"keyname":"Captcha","fallback":"true","orgId":"00D5g000004QtdE","ts":""}'>
+                    <input type=hidden name="oid" value="00D5g000004QtdE">
+                    <input type=hidden id="retURL" name="retURL" value="https://task-web-to-lead.herokuapp.com/complete.html">
+    
+                    <div id="firstPage">
+                        <div>
+                            <label for="company">Company Name*</label><br>
+                            <input  id="company" class="input-text" maxlength="40" name="company" size="20" type="text" onchange="checkCompanyField()"/>
+                            <p  id="companynameerror" class="error">Invalid field value: Only text!</p>
+                        </div>
+                        
+                        <div>
+                            <label for="url">Company Site</label><br>
+                            <input  id="url" class="input-text" maxlength="80" name="url" size="20" type="url" onchange="checkSiteField()" />
+                            <p id="companysiteerror" class="error">Invalid field value: Only url format!</p>
+                        </div>
+
+                        <div>
+                            <label for="first_name">First Name*</label><br>
+                            <input  id="first_name" class="input-text" maxlength="40" name="first_name" size="20" type="text" onchange="checkFirstName()" />
+                            <p  id="firstnameerror" class="error">Invalid field value: Only one word without numbers!</p>
+                        </div>
+                        
+                        
+                        <div>
+                            <label for="last_name">Last Name*</label><br>
+                            <input  id="last_name" class="input-text" maxlength="80" name="last_name" size="20" type="text" onchange="checkLastName()"/>
+                            <p  id="lastnameerror" class="error">Invalid field value: Only one word without numbers!</p>
+                        </div>
+                        
+                        <div>
+                            <label for="email">Email*</label><br>
+                            <input  id="email" class="input-text" maxlength="80" name="email" size="20" type="email" onchange="checkEmailInput()"/>
+                            <p  id="emailerror" class="error">Invalid field value: Only email format!</p>
+                        </div>
+
+                        <div>
+                            <label>Birthday*</label><span class="hiddenElement dateInput dateOnlyInput"></span><br>
+                            <span style="display:none;" class="dateInput dateOnlyInput"><input  id="00N5g000006HRKQ" name="00N5g000006HRKQ" size="12" type="text" /></span><br>
+                            <input id="dateField" name="dateField" size="12" type="date" onchange="checkDateField()"/> 
+                            <p  id="daterror" class="error">Invalid field value: Please use date format!</p>
+                        </div>
+                        
+                    </div>
+                    <div id="secondPage" class="hiddenElement">
+                        <div>
+                            <label for="country">Billing Country*</label><br>
+                            <input  id="country" class="input-text" maxlength="40" name="country" size="20" type="text" onchange="checkCountryField()" />
+                            <p id="countryerror" class="error">Invalid field value: Only one word without numbers!</p>
+                        </div>
+                        
+                        <div>
+                            <label for="state">Billing State/Province*</label><br>
+                            <input  id="state" class="input-text" maxlength="20" name="state" size="20" type="text" onchange="checkStateField()"/>
+                            <p id="stateerror" class="error">Invalid field value: Only text value!</p>
+                        </div>
+
+                        <div>
+                            <label for="zip">Billing Zip*</label><br>
+                            <input  id="zip" class="input-text" maxlength="20" name="zip" size="20" type="text" onchange="checkZipField()"/>
+                            <p  id="ziperror" class="error">Invalid field value: Only numbers!</p>
+                        </div>
+    
+                        <div>
+                            <label for="city">Billing City*</label><br>
+                            <input  id="city" class="input-text" maxlength="40" name="city" size="20" type="text" onchange="checkCityField()"/>
+                            <p  id="cityerror" class="error">Invalid field value: Only one word without numbers!</p>
+                        </div>
+    
+                        <div>
+                            <label for="street">Billing Street*</label><br>
+                            <textarea id="street" name="street" class="input-text" style="width: 350px; height: 50px;" onchange="checkStreetField()"></textarea><br>
+                            <p  id="streeterror" class="error">Invalid field value: Do not was empty!</p>
+                        </div>
+    
+
+    
+                        <input  id="00N5g000006HhMK" class="input-checkbox pretty" name="00N5g000006HhMK" type="checkbox"  value="1" />
+                        <span id="checkboxBox" class="" onclick="toggleCheckbox()">
+                            <img class="image" width="20" src="img/unchecked.png">
+                            <label>Add shipping address</label>
+                        </span>
+                        <br>
+                    </div>
+                    <div id="finalPage">
+                        <div id="err" class="errorM">
+                            <p>Please check reCAPTCHA!</p>
+                        </div>
+                        <div class="checkPage">
+                            <h3>Company Name</h3><p class="result" id="cn"></p>
+                        </div>
+                        <div class="checkPage">
+                            <h3>Company Site</h3><p class="result" id="cs"></p>
+                        </div>
+                        <div class="checkPage">
+                            <h3>First Name</h3><p class="result" id="fn"></p>
+                        </div>
+                        <div class="checkPage">
+                            <h3>Last Name</h3><p class="result" id="ln"></p>
+                        </div>
+                        <div class="checkPage">
+                            <h3>Birthday</h3><p class="result" id="b"></p>
+                        </div>
+                        <div class="checkPage"> 
+                            <h3>Email</h3><p class="result" id="e"></p>
+                        </div>
+                        <div class="checkPage">
+                            <h3>Billing Country</h3><p class="result" id="bc"></p>
+                        </div>
+                        <div class="checkPage">
+                            <h3>Billing State/Province</h3><p class="result" id="bs"></p>
+                        </div>
+                        <div class="checkPage">
+                            <h3>Billing Zip</h3><p class="result" id="bz"></p>
+                        </div>
+                        <div class="checkPage">
+                            <h3>Billing City</h3><p class="result" id="bcity"></p>
+                        </div>
+                        <div class="checkPage">
+                            <h3>Billing Street</h3><p class="result" id="bstreet"></p>
+                        </div>
+                        <div class="g-recaptcha captcha" data-sitekey="6LelWHwaAAAAAPqDyyI3SDEExSu-92kLRi24WIXs"></div><br>
+                    </div>
+                    <div class="navButtons">
+                        <input id="prev" type="button" value="Previos" onclick="toPrev()"/>
+                        <input id="next" type="button" value="Next" onclick="toNext()"/>
+                        <input id="submit" type="submit" name="submit" value="Submit">
+                    </div>
+                    
+                </form>
+                
+            </div>
+        </div>
+        
+        <script src="js/script.js"></script>
+
+    </body> 
+</html>
